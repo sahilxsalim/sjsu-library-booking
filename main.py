@@ -96,7 +96,7 @@ def book_slots(slots, username, password):
             try:
                 print(driver.current_url)
                 username_field = driver.find_element(By.XPATH, '//*[@id="username"]')
-                username_field.send_keys(username+"FD")
+                username_field.send_keys(username)
                 password_field = driver.find_element(By.XPATH, '//*[@id="password"]')
                 password_field.send_keys(password)
                 login_btn = driver.find_element(By.XPATH, '//*[@id="s-libapps-login-button"]')
