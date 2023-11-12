@@ -1,6 +1,25 @@
 from datetime import datetime, timedelta
 from datetime import datetime
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail, To
 import pytz
+import os
+
+
+def send_email(message):
+    message = Mail(
+        from_email='sahilsalim1999@gmail.com',
+        to_emails=[To('6506707856@txt.att.net'),  ],
+        subject='New Slots Booked',
+        plain_text_content=message)
+
+    try:
+        sg = SendGridAPIClient(
+            os.environ.get('SENDGRID_API_KEY'))
+        response = sg.send(message)
+        print("EMAIL SENT", response)
+    except Exception as e:
+        print(e)
 
 def increment_date(date_string, days=1):
     """
