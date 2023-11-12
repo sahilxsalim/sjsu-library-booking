@@ -92,12 +92,19 @@ def book_slots(slots, username, password):
         submit_times_btn = driver.find_element(By.XPATH, '//*[@id="submit_times"]')
         submit_times_btn.click()
 
-        username_field = driver.find_element(By.XPATH, '//*[@id="username"]')
-        username_field.send_keys(username)
-        password_field = driver.find_element(By.XPATH, '//*[@id="password"]')
-        password_field.send_keys(password)
-        login_btn = driver.find_element(By.XPATH, '//*[@id="s-libapps-login-button"]')
-        login_btn.click()
+        while True:
+            try:
+                print(driver.current_url)
+                username_field = driver.find_element(By.XPATH, '//*[@id="username"]')
+                username_field.send_keys(username+"FD")
+                password_field = driver.find_element(By.XPATH, '//*[@id="password"]')
+                password_field.send_keys(password)
+                login_btn = driver.find_element(By.XPATH, '//*[@id="s-libapps-login-button"]')
+                login_btn.click()
+                time.sleep(1)
+            except Exception as e:
+                print(e)
+                break
 
         continue_btn = driver.find_element(By.XPATH, '//*[@id="terms_accept"]')
         continue_btn.click()
